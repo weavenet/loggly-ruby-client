@@ -3,7 +3,7 @@ module LogglyRubyClient
 
     attr_accessor :domain, :password, :username
 
-    def initialize(args = {})
+    def initialize(args)
       @domain   = args[:domain]
       @username = args[:username]
       @password = args[:password]
@@ -11,4 +11,3 @@ module LogglyRubyClient
 
   end
 end
-

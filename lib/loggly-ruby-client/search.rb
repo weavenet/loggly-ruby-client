@@ -12,7 +12,7 @@ module LogglyRubyClient
     private
 
     def api
-      @api||= API.new :config => @config
+      @api ||= API.new :config => @config
     end
 
   end

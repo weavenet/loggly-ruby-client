@@ -3,26 +3,46 @@ module LogglyRubyClient
     class Search
 
       def initialize(args)
-        @config   = args[:config]
-        @domain   = @config.domain
-        @password = @config.password
-        @username = @config.username
-        @endpoint = "https://#{@domain}.loggly.com"
+        @config  = args[:config]
       end
 
       def search(args)
-        cmd   = "#{@endpoint}/api/search?"
-        from  = args[:from]
-        input = args[:input]
-        query = args[:query]
-        till  = args[:until]
+        cmd        = "/api/search?"
+        from_date  = args[:from]
+        until_date = args[:until]
+        query      = build_query :and_query => args[:and_query],
+                                 :or_query  => args[:or_query],
+                                 :input     => args[:input]
 
-        cmd << "from=#{from}&" if from
-        cmd << "inputname=#{input}&" if input
-        cmd << "q=#{query}&" if query
-        cmd << "until=#{till}&" if till
+        cmd << "q=#{query}&"
+        cmd << "from=#{from_date}&" if from_date
+        cmd << "until=#{until_date}&" if until_date
 
-        HTTParty.get cmd
+        connect.run cmd
+      end
+
+      private
+
+      def build_query(args)
+        query = ""
+        query += args[:and_query].join "%20AND%20"
+
+        if query == ""
+          query += args[:or_query].join "%20OR%20"
+        else
+          query += args[:or_query].map {|o| "%20OR%20#{o}"}.join
+        end
+
+        if query == ""
+          query += args[:input].join "%20AND%20"
+        else
+          query += args[:input].map { |i| "%20AND%20#{i}" }.join
+        end
+
+      end
+
+      def connect
+        @connect ||= LogglyRubyClient::API::Connect.new :config => @config
       end
 
     end

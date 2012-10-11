@@ -2,19 +2,25 @@ module LogglyRubyClient
   class CLI
     class Search
 
-      def initialize
-        @config          = Config.new
-      end
-
       def search
-        opts             = read_options
-        @config.domain   = opts[:domain]
-        @config.username = opts[:username]
-        @config.password = opts[:password]
+        opts = read_options
+        @config = Config.new :domain   => opts[:domain],
+                             :username => opts[:username],
+                             :password => opts[:password]
 
-        search = LogglyRubyClient::Search.new :config => @config
-        jj search.search :input => opts[:input],
-                         :query => opts[:query]
+        s = LogglyRubyClient::Search.new :config => @config
+        result = s.search :input     => opts[:input],
+                          :from      => opts[:from],
+                          :until     => opts[:until],
+                          :and_query => opts[:and_query],
+                          :or_query  => opts[:or_query]
+
+        if result.response.code == "200"
+          puts result.response.body
+        else
+          puts "Error: #{result}"
+          exit 1
+        end
       end
 
       def read_options
@@ -30,15 +36,21 @@ loggly-ruby-client search -u username -p password -d domain -q query -i input
 
 EOS
           opt :help, "Display Help"
-          opt :domain, "Domain", :type => :string
+          opt :domain, "Account Domain", :type => :string
           opt :from, "From Date", :type => :string
-          opt :input, "Loggly Input", :type => :string
-          opt :until, "Until Date", :type => :string
+          opt :input, "Input To Search", :type  => :string,
+                                         :multi => true
+          opt :until, "Until Date", :type  => :string,
+                                    :short => :none
           opt :level, "Log Level", :type    => :string, 
                                    :default => 'info'
-          opt :query, "Query", :type => :string
-          opt :password, "Password", :type => :string
-          opt :username, "Username", :type => :string
+          opt :and_query, "And Query", :type  => :string,
+                                       :multi => true
+          opt :or_query, "Or Query", :type  => :string,
+                                     :multi => true
+          opt :password, "Loggly Password", :type => :string
+          opt :rows, "Rows To Return", :type => :string
+          opt :username, "Loggly Username", :type => :string
         end
       end
  

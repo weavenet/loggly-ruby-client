@@ -5,7 +5,7 @@ require 'loggly-ruby-client/version'
 
 Gem::Specification.new do |gem|
   gem.name          = "loggly-ruby-client"
-  gem.version       = Loggly::Ruby::Client::VERSION
+  gem.version       = LogglyRubyClient::VERSION
   gem.authors       = ["Brett Weaver"]
   gem.email         = ["brett@weav.net"]
   gem.description   = %q{Client to access Loggly API}
