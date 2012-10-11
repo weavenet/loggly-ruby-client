@@ -1,8 +1,6 @@
 module LogglyRubyClient
-  class Search
-
-    def search(args)
+  class API
+    class Search
     end
-
   end
 end

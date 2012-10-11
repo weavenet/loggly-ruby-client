@@ -19,5 +19,6 @@ Gem::Specification.new do |gem|
 
   gem.add_development_dependency "rspec"
 
+  gem.add_runtime_dependency 'httparty'
   gem.add_runtime_dependency 'trollop'
 end
