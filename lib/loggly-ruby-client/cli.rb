@@ -1,3 +1,4 @@
+require 'json'
 require 'trollop'
 
 require 'loggly-ruby-client/cli/facet'

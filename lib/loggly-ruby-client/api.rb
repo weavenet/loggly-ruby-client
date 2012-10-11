@@ -2,6 +2,7 @@ require 'httparty'
 require 'loggly-ruby-client/api/search'
 
 module LogglyRubyClient
+
   class API
 
     def initialize(args)
