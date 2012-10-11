@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+require 'loggly-ruby-client'
+require 'loggly-ruby-client/cli'
+
+LogglyRubyClient::CLI.new.start
