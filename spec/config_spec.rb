@@ -35,6 +35,16 @@ describe LogglyRubyClient::Config do
       config.username.should == 'newuser'
       config.password.should == 'newpass'
     end
+
+    it "should not blow up if the account does not exist" do
+      config = LogglyRubyClient::Config.new :account  => 'boom',
+                                            :username => 'newuser',
+                                            :password => 'newpass',
+                                            :domain   => 'newdom'
+      config.domain.should == 'newdom'
+      config.username.should == 'newuser'
+      config.password.should == 'newpass'
+    end
   end
 
   context "without config file" do

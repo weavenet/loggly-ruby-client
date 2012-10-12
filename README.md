@@ -1,24 +1,40 @@
 # Loggly::Ruby::Client
 
-TODO: Write a gem description
+loggly-ruby-client is a basic SDK with CLI for Loggly's search API.
 
 ## Installation
 
-Add this line to your application's Gemfile:
+```
+gem install loggly-ruby-client
+```
 
-    gem 'loggly-ruby-client'
+## Getting Started
 
-And then execute:
+You can specify your credentials on the command line, however it is best to add them to a configuration file.
 
-    $ bundle
+By default, loggly-ruby-client will look for the default account.
 
-Or install it yourself as:
-
-    $ gem install loggly-ruby-client
+```
+cat > ~/.loggly-ruby-client.yml << EOF
+default:
+  username: your_username
+  password: your_password
+EOF
+`
 
 ## Usage
 
-TODO: Write usage instructions here
+Performing basic search:
+
+```
+loggly-ruby-client -q testquery
+```
+
+Multiple queries can be specified and will be joined with ANDs.
+
+```
+loggly-ruby-client -q testquery1 -q testquery2
+```
 
 ## Contributing
 

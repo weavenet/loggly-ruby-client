@@ -39,7 +39,8 @@ loggly-ruby-client search -a account -q query
 
 EOS
           opt :help, "Display Help"
-          opt :account, "Read domain, username and password from account in ~/.loggly-ruby-client.yml", :type => :string
+          opt :account, "Read domain, username and password from account in ~/.loggly-ruby-client.yml", :type    => :string,
+                                     :default => 'default'
           opt :domain, "Loggly Account Domain", :type => :string
           opt :from, "From Date", :type    => :string,
                                   :default => 'NOW-1HOUR'
