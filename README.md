@@ -1,5 +1,3 @@
-# Loggly::Ruby::Client
-
 loggly-ruby-client is a basic SDK with CLI for Loggly's search API.
 
 ## Installation
