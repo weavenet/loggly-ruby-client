@@ -1,3 +1,5 @@
+[![Build Status](https://secure.travis-ci.org/brettweavnet/loggly-ruby-client.png)](http://travis-ci.org/brettweavnet/loggly-ruby-client)
+
 loggly-ruby-client is a basic SDK with CLI for Loggly's search API.
 
 ## Installation
