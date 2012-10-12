@@ -45,8 +45,9 @@ describe LogglyRubyClient::CLI::Search do
   end
 
   it "should exit with 1 if search api does not return 200 code" do
-    result = { :code => "404",
-               :body => 'theerror' }
+    result = { :code  => "404",
+               :error => 'theerror',
+               :body  => '' }
     @search_mock.should_receive(:search).
                  with(:input => 'input',
                       :from   => 'from',

@@ -21,7 +21,7 @@ module LogglyRubyClient
         if result[:code] == "200"
           jj result[:body]
         else
-          puts "Error: #{result[:body]}"
+          puts "Error: #{result[:error]}"
           exit 1
         end
       end
