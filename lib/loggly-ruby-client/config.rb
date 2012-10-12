@@ -3,7 +3,7 @@ module LogglyRubyClient
 
     attr_accessor :domain, :password, :username
 
-    def initialize(args ={})
+    def initialize(args)
       @account  = args[:account]
       load_config_file
       load_config

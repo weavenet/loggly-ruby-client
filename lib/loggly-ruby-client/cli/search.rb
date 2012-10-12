@@ -1,3 +1,5 @@
+require 'json'
+
 module LogglyRubyClient
   class CLI
     class Search
@@ -19,7 +21,7 @@ module LogglyRubyClient
         if result.response.code == "200"
           puts result.response.body
         else
-          puts "Error: #{result}"
+          puts "Error: #{result.response.body}"
           exit 1
         end
       end
@@ -33,13 +35,14 @@ Search Loggly
 
 Usage:
 
-loggly-ruby-client search -u username -p password -d domain -q query -i input
+loggly-ruby-client search -a account -q query
 
 EOS
           opt :help, "Display Help"
           opt :account, "Read domain, username and password from account in ~/.loggly-ruby-client.yml", :type => :string
           opt :domain, "Loggly Account Domain", :type => :string
-          opt :from, "From Date", :type => :string
+          opt :from, "From Date", :type    => :string,
+                                  :default => 'NOW-1HOUR'
           opt :input, "Input To Search", :type  => :string,
                                          :multi => true
           opt :until, "Until Date", :type  => :string,

@@ -40,7 +40,7 @@ describe LogglyRubyClient::Config do
   context "without config file" do
     it "should not blow up if config does not exist" do
       File.stub :exists? => false
-      LogglyRubyClient::Config.new
+      LogglyRubyClient::Config.new :account => 'test1'
     end
   end
 
