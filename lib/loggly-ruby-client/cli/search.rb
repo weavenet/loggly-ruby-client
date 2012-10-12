@@ -9,11 +9,10 @@ module LogglyRubyClient
                              :password => opts[:password]
 
         s = LogglyRubyClient::Search.new :config => @config
-        result = s.search :input     => opts[:input],
-                          :from      => opts[:from],
-                          :until     => opts[:until],
-                          :and_query => opts[:and_query],
-                          :or_query  => opts[:or_query]
+        result = s.search :input => opts[:input],
+                          :from  => opts[:from],
+                          :until => opts[:until],
+                          :query => opts[:query]
 
         if result.response.code == "200"
           puts result.response.body
@@ -44,10 +43,8 @@ EOS
                                     :short => :none
           opt :level, "Log Level", :type    => :string, 
                                    :default => 'info'
-          opt :and_query, "And Query", :type  => :string,
-                                       :multi => true
-          opt :or_query, "Or Query", :type  => :string,
-                                     :multi => true
+          opt :query, "Query (multiple will be joined with AND)", :type  => :string,
+                                                                  :multi => true
           opt :password, "Loggly Password", :type => :string
           opt :rows, "Rows To Return", :type => :string
           opt :username, "Loggly Username", :type => :string

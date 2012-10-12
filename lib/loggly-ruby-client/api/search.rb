@@ -10,9 +10,8 @@ module LogglyRubyClient
         cmd        = "/api/search?"
         from_date  = args[:from]
         until_date = args[:until]
-        query      = build_query :and_query => args[:and_query],
-                                 :or_query  => args[:or_query],
-                                 :input     => args[:input]
+        query      = build_query :query => args[:query],
+                                 :input => args[:input]
 
         cmd << "q=#{query}&"
         cmd << "from=#{from_date}&" if from_date
@@ -24,21 +23,12 @@ module LogglyRubyClient
       private
 
       def build_query(args)
-        query = ""
-        query += args[:and_query].join "%20AND%20"
-
-        if query == ""
-          query += args[:or_query].join "%20OR%20"
-        else
-          query += args[:or_query].map {|o| "%20OR%20#{o}"}.join
-        end
-
-        if query == ""
-          query += args[:input].join "%20AND%20"
-        else
-          query += args[:input].map { |i| "%20AND%20#{i}" }.join
-        end
-
+        query = args[:query]
+        input = args[:input]
+        string = ""
+        string += query.join "%20AND%20"
+        string += "%20AND%20" if query.any? && input.any?
+        string += input.map { |i| "inputname:#{i}" }.join "%20OR%20"
       end
 
       def connect

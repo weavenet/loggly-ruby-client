@@ -1,6 +1,5 @@
 require 'httparty'
 require 'loggly-ruby-client/api/connect'
-require 'loggly-ruby-client/api/facet'
 require 'loggly-ruby-client/api/search'
 
 module LogglyRubyClient
@@ -18,10 +17,6 @@ module LogglyRubyClient
     
     def api_search
       @api_search ||= API::Search.new :config => @config
-    end
-
-    def facet
-      @api_facet ||= API::Facet.new :config => @config
     end
 
   end
