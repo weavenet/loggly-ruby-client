@@ -11,9 +11,11 @@ module LogglyRubyClient
       end
 
       def run(cmd)
-        HTTParty.get @endpoint + cmd, :basic_auth => @auth
+        result = HTTParty.get @endpoint + cmd, :basic_auth => @auth
+        { :code => result.response.code,
+          :body => JSON.parse(result.response.body) }
       end
-
+          
     end
   end
 end

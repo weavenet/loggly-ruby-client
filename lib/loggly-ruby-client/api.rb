@@ -10,7 +10,7 @@ module LogglyRubyClient
     end
 
     def search(args)
-      api_search.search args
+      result = api_search.search args
     end
 
     private

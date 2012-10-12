@@ -16,8 +16,6 @@ describe LogglyRubyClient::CLI::Search do
 
     @config_stub   = stub 'config'
     @search_mock   = mock 'search'
-    @result_mock   = mock 'result'
-    @response_stub = stub 'response'
 
     Trollop.stub :options => @options
     LogglyRubyClient::Config.should_receive(:new).
@@ -29,27 +27,33 @@ describe LogglyRubyClient::CLI::Search do
     LogglyRubyClient::Search.should_receive(:new).
                              with(:config => @config_stub).
                              and_return @search_mock
+  end
+
+  it "should put the output of the search api in json" do
+    result = { :code => "200",
+               :body => { 'test' => '123' } }
     @search_mock.should_receive(:search).
                  with(:input => 'input',
                       :from   => 'from',
                       :until  => 'until',
                       :query  => 'query',
                       :rows   => 'rows').
-                 and_return @result_mock
-    @result_mock.stub :response => @response_stub
-  end
-
-  it "should put the output of the search api in json" do
-    @response_stub.stub :code => '200'
-    @response_stub.stub :body => 'thedata'
+                 and_return result
     s = LogglyRubyClient::CLI::Search.new
-    s.should_receive(:puts).with('thedata')
+    s.should_receive(:jj).with result[:body]
     s.search
   end
 
   it "should exit with 1 if search api does not return 200 code" do
-    @response_stub.stub :code => '404'
-    @response_stub.stub :body => 'theerror'
+    result = { :code => "404",
+               :body => 'theerror' }
+    @search_mock.should_receive(:search).
+                 with(:input => 'input',
+                      :from   => 'from',
+                      :until  => 'until',
+                      :query  => 'query',
+                      :rows   => 'rows').
+                 and_return result
     s = LogglyRubyClient::CLI::Search.new
     s.should_receive(:puts).with('Error: theerror')
     lambda { s.search }.should raise_error SystemExit

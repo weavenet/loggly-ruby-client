@@ -1,3 +1,5 @@
+require 'json'
+
 module LogglyRubyClient
   class API
     class Search
@@ -22,7 +24,7 @@ module LogglyRubyClient
 
         cmd.chop!
 
-        connect.run cmd
+        result = connect.run cmd
       end
 
       private
