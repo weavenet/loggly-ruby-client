@@ -8,8 +8,8 @@ Gem::Specification.new do |gem|
   gem.version       = LogglyRubyClient::VERSION
   gem.authors       = ["Brett Weaver"]
   gem.email         = ["brett@weav.net"]
-  gem.description   = %q{Client to access Loggly API}
-  gem.summary       = %q{Client to access Loggly API}
+  gem.description   = %q{Client to search Loggly}
+  gem.summary       = %q{Client to search Loggly}
   gem.homepage      = ""
 
   gem.files         = `git ls-files`.split($/)
