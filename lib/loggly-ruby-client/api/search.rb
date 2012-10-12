@@ -20,6 +20,8 @@ module LogglyRubyClient
         cmd << "rows=#{rows}&" if rows
         cmd << "until=#{until_date}&" if until_date
 
+        cmd.chop!
+
         connect.run cmd
       end
 
