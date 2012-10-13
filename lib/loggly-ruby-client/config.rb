@@ -4,7 +4,8 @@ module LogglyRubyClient
     attr_accessor :domain, :password, :username
 
     def initialize(args)
-      @account  = args[:account]
+      @account     = args[:account]
+      @config_file = args[:config_file] || "#{ENV['HOME']}/.loggly-ruby-client.yml"
       load_config_file
       load_config
 
@@ -16,10 +17,8 @@ module LogglyRubyClient
     private
 
     def load_config_file
-      config_file = "#{ENV['HOME']}/.loggly-ruby-client.yml"
-
-      if File.exists? config_file
-        @config = YAML::load(File.open(config_file))
+      if File.exists? @config_file
+        @config = YAML::load(File.open(@config_file))
       else
         @config = {}
       end

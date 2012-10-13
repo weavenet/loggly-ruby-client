@@ -2,7 +2,11 @@ module LogglyRubyClient
   class Search
 
     def initialize(args)
-      @config = args[:config]
+      @config = Config.new :domain      => args[:domain],
+                           :config_file => args[:config_file],
+                           :username    => args[:username],
+                           :password    => args[:password],
+                           :account     => args[:account]
     end
 
     def search(args)

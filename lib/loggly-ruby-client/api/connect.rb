@@ -21,15 +21,15 @@ module LogglyRubyClient
         body = result.response.body
         if result.response.code == "200"
           { 
-            :body  => JSON.parse(body),
-            :code  => result.response.code,
-            :error => ""
+            "body"  => JSON.parse(body),
+            "code"  => result.response.code,
+            "error" => ""
           }
         else
           { 
-            :body  => "",
-            :code  => result.response.code,
-            :error => body
+            "body"  => "",
+            "code"  => result.response.code,
+            "error" => body
           }
         end
       end

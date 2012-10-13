@@ -14,18 +14,14 @@ describe LogglyRubyClient::CLI::Search do
                  :domain   => 'domain',
                  :account  => 'account' }
 
-    @config_stub   = stub 'config'
     @search_mock   = mock 'search'
 
     Trollop.stub :options => @options
-    LogglyRubyClient::Config.should_receive(:new).
+    LogglyRubyClient::Search.should_receive(:new).
                              with(:username => 'user',
                                   :password => 'pass',
                                   :domain   => 'domain',
                                   :account  => 'account').
-                             and_return @config_stub
-    LogglyRubyClient::Search.should_receive(:new).
-                             with(:config => @config_stub).
                              and_return @search_mock
   end
 

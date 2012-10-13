@@ -6,12 +6,11 @@ module LogglyRubyClient
 
       def search
         opts = read_options
-        @config = Config.new :domain   => opts[:domain],
-                             :username => opts[:username],
-                             :password => opts[:password],
-                             :account  => opts[:account]
+        s = LogglyRubyClient::Search.new :domain   => opts[:domain],
+                                         :username => opts[:username],
+                                         :password => opts[:password],
+                                         :account  => opts[:account]
 
-        s = LogglyRubyClient::Search.new :config => @config
         result = s.search :input => opts[:input],
                           :from  => opts[:from],
                           :until => opts[:until],
