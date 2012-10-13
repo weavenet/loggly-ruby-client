@@ -10,7 +10,7 @@ Gem::Specification.new do |gem|
   gem.email         = ["brett@weav.net"]
   gem.description   = %q{Client to search Loggly}
   gem.summary       = %q{Client to search Loggly}
-  gem.homepage      = ""
+  gem.homepage      = "https://github.com/brettweavnet/loggly-ruby-client"
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
