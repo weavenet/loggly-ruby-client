@@ -26,8 +26,8 @@ describe LogglyRubyClient::CLI::Search do
   end
 
   it "should put the output of the search api in json" do
-    result = { :code => "200",
-               :body => { 'test' => '123' } }
+    result = { "code" => "200",
+               "body" => { 'test' => '123' } }
     @search_mock.should_receive(:search).
                  with(:input => 'input',
                       :from   => 'from',
@@ -36,14 +36,14 @@ describe LogglyRubyClient::CLI::Search do
                       :rows   => 'rows').
                  and_return result
     s = LogglyRubyClient::CLI::Search.new
-    s.should_receive(:jj).with result[:body]
+    s.should_receive(:jj).with result["body"]
     s.search
   end
 
   it "should exit with 1 if search api does not return 200 code" do
-    result = { :code  => "404",
-               :error => 'theerror',
-               :body  => '' }
+    result = { "code"  => "404",
+               "error" => 'theerror',
+               "body"  => '' }
     @search_mock.should_receive(:search).
                  with(:input => 'input',
                       :from   => 'from',

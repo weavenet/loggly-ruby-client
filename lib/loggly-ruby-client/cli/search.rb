@@ -17,10 +17,10 @@ module LogglyRubyClient
                           :query => opts[:query],
                           :rows  => opts[:rows]
 
-        if result[:code] == "200"
-          jj result[:body]
+        if result["code"] == "200"
+          jj result["body"]
         else
-          puts "Error: #{result[:error]}"
+          puts "Error: #{result["error"]}"
           exit 1
         end
       end

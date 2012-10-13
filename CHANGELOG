@@ -1,6 +1,8 @@
-## HEAD:
+## v0.2.0:
 
-*
+* Added support for loading custom config
+* Return result body, code & error as string
+* Create config object within search rather than cli
 
 ## v0.1.0:
 
