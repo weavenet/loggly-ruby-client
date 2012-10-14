@@ -51,6 +51,7 @@ loggly-ruby-client -h
 Create a new LogglyRubyClient object:
 
 ```
+require 'loggly-ruby-client'
 loggly = LogglyRubyClient.new
 ```
 
