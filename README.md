@@ -12,28 +12,55 @@ gem install loggly-ruby-client
 
 You can specify your credentials on the command line, however it is best to add them to a configuration file.
 
-By default, loggly-ruby-client will look for the default account.
-
 ```
-cat > ~/.loggly-ruby-client.yml << EOF
 default:
   username: your_username
   password: your_password
-EOF
 ```
 
-## Usage
+## Usage - CLI
 
 Performing basic search:
 
 ```
-loggly-ruby-client -q testquery
+loggly-ruby-client -q testquery1
 ```
 
-Multiple queries can be specified and will be joined with ANDs.
+(If account is note specified loggly-ruby-client will look for the default account.)
+
+Multiple queries can be specified and will be joined with **ANDs**:
 
 ```
 loggly-ruby-client -q testquery1 -q testquery2
+```
+
+And inputs can be added, multile inputs will be joined with **ORs**:
+
+```
+loggly-ruby-client -q testquery1 -q testquery2 -i input1 -i input2
+```
+
+See help for full list of options:
+
+```
+loggly-ruby-client -h
+```
+
+## Usage - Class
+
+Create a new LogglyRubyClient object:
+
+```
+loggly = LogglyRubyClient.new
+```
+
+Perform basic search:
+
+```
+loggly.search :from  => 'NOW-1HOUR',
+              :query => ['testquery1'],
+              :input => ['input1']
+ 
 ```
 
 ## Contributing
