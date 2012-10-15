@@ -61,7 +61,6 @@ Perform basic search:
 loggly.search :from  => 'NOW-1HOUR',
               :query => ['testquery1'],
               :input => ['input1']
- 
 ```
 
 ## Contributing
