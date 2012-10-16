@@ -46,4 +46,16 @@ describe LogglyRubyClient::API::Search do
                    :rows  => 5).should == 'result'
   end
 
+  it "should conver spaces in queries to %20" do
+    data = '/api/search?q=1%20AND%202%203%20AND%204%205%20%206&from=from&rows=5&until=till'
+    @connect_mock.should_receive(:run).
+                  with(data).
+                  and_return 'result'
+    @search.search(:from  => 'from',
+                   :until => 'till',
+                   :query => ['1', '2 3', '4 5  6'],
+                   :input => [],
+                   :rows  => 5).should == 'result'
+  end
+
 end

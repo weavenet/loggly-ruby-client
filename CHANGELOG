@@ -1,3 +1,7 @@
+## v0.2.1:
+
+* Convert spaces in queries to %20
+
 ## v0.2.0:
 
 * Added support for loading custom config
