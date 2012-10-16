@@ -34,7 +34,7 @@ module LogglyRubyClient
         input = args[:input]
 
         string = ""
-        string += query.join "%20AND%20"
+        string += query.map { |m| m.gsub(/ /, "%20") }.join "%20AND%20"
         string += "%20AND%20" if query.any? && input.any?
         string += input.map { |i| "inputname:#{i}" }.join "%20OR%20"
       end
