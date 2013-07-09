@@ -52,7 +52,8 @@ Create a new LogglyRubyClient object:
 
 ```
 require 'loggly-ruby-client'
-loggly = LogglyRubyClient.new
+config = LogglyRubyClient::Config.new(domain:'YOUR_DOMAIN',username:'USERNAME',password:'PASSWORD')
+loggly = LogglyRubyClient::API.new(config: config)
 ```
 
 Perform basic search:
