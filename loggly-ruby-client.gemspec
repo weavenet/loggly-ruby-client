@@ -6,8 +6,8 @@ require 'loggly-ruby-client/version'
 Gem::Specification.new do |gem|
   gem.name          = "loggly-ruby-client"
   gem.version       = LogglyRubyClient::VERSION
-  gem.authors       = ["Brett Weaver"]
-  gem.email         = ["brett@weav.net"]
+  gem.authors       = ["brettweavnet"]
+  gem.email         = ["open-source-845@weav.net"]
   gem.description   = %q{Client to search Loggly}
   gem.summary       = %q{Client to search Loggly}
   gem.homepage      = "https://github.com/brettweavnet/loggly-ruby-client"
